@@ -1,0 +1,71 @@
+@extends('layouts.app')
+
+@section('page-title', 'Crea Nuovo Viaggio')
+
+@section('main-content')
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Crea Nuovo Viaggio</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('admin.travels.store') }}" method="POST">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="title">Titolo</label>
+                            <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
+                            @error('title')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="start_date">Data Inizio</label>
+                            <input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('start_date') }}" required>
+                            @error('start_date')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="end_date">Data Fine</label>
+                            <input type="date" name="end_date" id="end_date" class="form-control" value="{{ old('end_date') }}" required>
+                            @error('end_date')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Luogo</label>
+                            <input type="text" name="location" id="location" class="form-control" value="{{ old('location') }}" required>
+                            @error('location')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Descrizione</label>
+                            <textarea name="description" id="description" class="form-control" rows="4" required>{{ old('description') }}</textarea>
+                            @error('description')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="img_url">Immagine URL</label>
+                            <input type="url" name="img_url" id="img_url" class="form-control" value="{{ old('img_url') }}" required>
+                            @error('img_url')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Crea Viaggio</button>
+                        <a href="{{ route('admin.travels.index') }}" class="btn btn-secondary">Annulla</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

@@ -6,10 +6,17 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-primary">
-                        Welcome!
+                        TRAVEL APP
                     </h1>
                     <br>
-                    La welcome page è una pagina pubblica (NON protetta)
+                    <p class="text-center">La prima app per organizzare e rivivere i propri viaggi in tutta comodità</p>
+
+                    <div class="row">
+                        <div class="col d-flex justify-content-center gap-2">
+                            <a class="btn btn-dark" href="{{ route('login') }}">Login</a>
+                            <a class="btn btn-dark" href="{{ route('register') }}">Register</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
