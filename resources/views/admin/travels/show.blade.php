@@ -14,7 +14,18 @@
                     <p><strong>Data Fine:</strong> {{ $travel->end_date->format('d/m/Y') }}</p>
                     <p><strong>Luogo:</strong> {{ $travel->location }}</p>
                     <p><strong>Descrizione:</strong> {{ $travel->description }}</p>
-                    <p><strong>Immagine:</strong> <br> <img src="{{ $travel->img_url }}" alt="{{ $travel->title }}">
+                    <p><strong>Immagine:</strong> <br> 
+                        @if (Str::startsWith($travel->img_file, 'https://'))
+                            <!-- Caso 2: URL esterno -->
+                            <img src="{{ $travel->img_file }}" alt="{{ $travel->title }}">
+                        @else
+                            <!-- Caso 1: File nella cartella storage -->
+                            <img src="{{ asset('storage/' . $travel->img_file) }}" alt="{{ $travel->title }}">
+                        @endif
+                    </p>
+                    
+                        
+                    
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('admin.travels.edit', $travel->id) }}" class="btn btn-warning">Modifica</a>
@@ -28,6 +39,6 @@
 
 <style lang="scss" scoped>
     img{
-        max-width: 500px;
+        max-width: 300px;
     }
 </style>

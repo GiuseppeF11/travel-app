@@ -21,7 +21,7 @@ class TravelSeeder extends Seeder
                 'end_date' => '2024-08-07',
                 'location' => 'Roma, Italia',
                 'description' => 'Un viaggio storico alla scoperta dell\'antica Roma e delle sue meraviglie.',
-                'img_url' => 'https://cdn-imgix.headout.com/microbrands-content-image/image/8434f824dff2a1f05b0b91e0c09c83da-AdobeStock_119146497.jpg?auto=format&w=814.9333333333333&h=458.4&q=90&ar=16%3A9&crop=faces',
+                'img_file' => 'https://cdn-imgix.headout.com/microbrands-content-image/image/8434f824dff2a1f05b0b91e0c09c83da-AdobeStock_119146497.jpg?auto=format&w=814.9333333333333&h=458.4&q=90&ar=16%3A9&crop=faces',
             ],
             [
                 'user_id' => 1,
@@ -30,7 +30,7 @@ class TravelSeeder extends Seeder
                 'end_date' => '2024-09-22',
                 'location' => 'Dolomiti, Italia',
                 'description' => 'Una settimana di escursioni e relax tra le montagne più belle del mondo.',
-                'img_url' => 'https://static2-viaggi.corriereobjects.it/wp-content/uploads/2015/06/dolomiti.jpg?v=1696346714',
+                'img_file' => 'https://static2-viaggi.corriereobjects.it/wp-content/uploads/2015/06/dolomiti.jpg?v=1696346714',
             ],
             [
                 'user_id' => 2,
@@ -39,7 +39,7 @@ class TravelSeeder extends Seeder
                 'end_date' => '2024-07-20',
                 'location' => 'Sardegna, Italia',
                 'description' => 'Spiagge incantevoli e mare cristallino per un\'esperienza indimenticabile.',
-                'img_url' => 'https://www.cagliarimag.com/wp-content/uploads/2023/07/mare-sardegna.jpg',
+                'img_file' => 'https://www.cagliarimag.com/wp-content/uploads/2023/07/mare-sardegna.jpg',
             ],
         ];
 

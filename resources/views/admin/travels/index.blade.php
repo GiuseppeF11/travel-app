@@ -5,6 +5,9 @@
 @section('page-title', 'I Tuoi Viaggi')
 
 @section('main-content')
+    <h1 class="text-center text-success">
+        Benvenuto, {{ Auth::user()->name }}!
+    </h1>
     <div class="row">
         <div class="col">
             <div class="card">

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Travel;
 use Illuminate\Http\Request;
+use App\Http\Requests\TravelRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TravelController extends Controller
 {
@@ -30,23 +32,25 @@ class TravelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    // Salvataggio del percorso dell'immagine
+    public function store(TravelRequest $request)
     {
-        // Validazione dei dati del viaggio
-        $validated = $request->validate([
-            'title' => 'required|string|max:250',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
-            'location' => 'required|string|max:250',
-            'description' => 'required|string',
-            'img_url' => 'required|url',
-        ]);
+        $validated = $request->validated();
 
-        // Creazione di un nuovo viaggio
+        if ($request->hasFile('img_file')) {
+            $file = $request->file('img_file');
+            $path = $file->store('images', 'public'); // Salva l'immagine
+            $validated['img_file'] = $path;
+        }
+
         Travel::create(array_merge($validated, ['user_id' => Auth::id()]));
 
         return redirect()->route('admin.travels.index')->with('success', 'Viaggio creato con successo.');
     }
+
+
+
+
 
 
     /**
@@ -80,28 +84,26 @@ class TravelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Travel $travel)
+    public function update(TravelRequest $request, Travel $travel)
     {
-        // Verifica che il viaggio appartenga all'utente loggato
-        if ($travel->user_id !== Auth::id()) {
-            abort(403, 'Accesso non autorizzato');
+        $validated = $request->validated();
+
+        if ($request->hasFile('img_file')) {
+            $file = $request->file('img_file');
+            $path = $file->store('images', 'public'); // Salva l'immagine nella directory 'storage/app/public/images'
+            $validated['img_file'] = $path; // Memorizza il percorso del file
+
+            // Rimuovi il vecchio file se necessario
+            if ($travel->img_file && Storage::exists($travel->img_file)) {
+                Storage::delete($travel->img_file);
+            }
         }
 
-        // Validazione dei dati del viaggio
-        $validated = $request->validate([
-            'title' => 'required|string|max:250',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
-            'location' => 'required|string|max:250',
-            'description' => 'required|string',
-            'img_url' => 'required|url',
-        ]);
-
-        // Aggiornamento del viaggio
         $travel->update($validated);
 
         return redirect()->route('admin.travels.index')->with('success', 'Viaggio aggiornato con successo.');
     }
+
 
 
     /**

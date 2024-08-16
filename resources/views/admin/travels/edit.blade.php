@@ -10,7 +10,7 @@
                     <h3>Modifica Viaggio: {{ $travel->title }}</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.travels.update', $travel->id) }}" method="POST">
+                    <form action="{{ route('admin.travels.update', $travel->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -40,8 +40,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="img_url">Immagine URL</label>
-                            <input type="url" name="img_url" id="img_url" class="form-control" value="{{ old('img_url', $travel->img_url) }}" required>
+                            <label for="img_file">Immagine</label>
+                            <input type="file" name="img_file" id="img_file" class="form-control" accept="image/*">
+
+                            <!-- Mostra l'anteprima dell'immagine esistente -->
+                            <div class="mt-2">
+                                <img id="image-preview" src="{{ asset('storage/' . $travel->img_file) }}" alt="{{ $travel->title }}">
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Aggiorna Viaggio</button>
@@ -51,4 +56,28 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('img_file').addEventListener('change', function(event) {
+            var input = event.target;
+            var file = input.files[0];
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                var imgPreview = document.getElementById('image-preview');
+                imgPreview.src = e.target.result;
+            }
+            
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 @endsection
+
+
+<style lang="scss" scoped>
+    img{
+        max-width: 300px;
+    }
+</style>

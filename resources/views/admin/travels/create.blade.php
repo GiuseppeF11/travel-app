@@ -54,12 +54,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="img_url">Immagine URL</label>
-                            <input type="url" name="img_url" id="img_url" class="form-control" value="{{ old('img_url') }}" required>
-                            @error('img_url')
+                            <label for="img_file">Carica Immagine</label>
+                            <input type="file" name="img_file" id="img_file" class="form-control" required>
+                            @error('img_file')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                            <div class="mt-2">
+                                <img id="img_preview" src="" alt="Anteprima Immagine" class="img-fluid" style="display: none; max-height: 200px;">
+                            </div>
                         </div>
+                        
 
                         <button type="submit" class="btn btn-primary">Crea Viaggio</button>
                         <a href="{{ route('admin.travels.index') }}" class="btn btn-secondary">Annulla</a>
@@ -68,4 +72,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('img_file').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('img_preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 @endsection
