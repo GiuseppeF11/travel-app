@@ -55,12 +55,12 @@
 
                         <div class="form-group">
                             <label for="img_file">Carica Immagine</label>
-                            <input type="file" name="img_file" id="img_file" class="form-control" required>
+                            <input type="file" name="img_file" id="img_file" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
                             @error('img_file')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             <div class="mt-2">
-                                <img id="img_preview" src="" alt="Anteprima Immagine" class="img-fluid" style="display: none; max-height: 200px;">
+                                <img id="img_preview" src="" alt="Anteprima Immagine" class="img-fluid" >
                             </div>
                         </div>
                         

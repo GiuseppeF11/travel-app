@@ -58,12 +58,10 @@ class TravelController extends Controller
      */
     public function show(Travel $travel)
     {
-        // Verifica che il viaggio appartenga all'utente loggato
-        if ($travel->user_id !== Auth::id()) {
-            abort(403, 'Accesso non autorizzato');
-        }
-
-        return view('admin.travels.show', compact('travel'));
+        // Recupera le tappe associate al viaggio
+        $stages = $travel->stages()->orderBy('stage_start_date', 'asc')->get();
+        
+        return view('admin.travels.show', compact('travel', 'stages'));
     }
 
 
@@ -85,24 +83,26 @@ class TravelController extends Controller
      * Update the specified resource in storage.
      */
     public function update(TravelRequest $request, Travel $travel)
-    {
-        $validated = $request->validated();
+{
+    $validated = $request->validated();
 
-        if ($request->hasFile('img_file')) {
-            $file = $request->file('img_file');
-            $path = $file->store('images', 'public'); // Salva l'immagine nella directory 'storage/app/public/images'
-            $validated['img_file'] = $path; // Memorizza il percorso del file
+    if ($request->hasFile('img_file')) {
+        $file = $request->file('img_file');
+        $path = $file->store('images', 'public'); // Salva l'immagine nella directory 'storage/app/public/images'
+        $validated['img_file'] = $path; // Memorizza il percorso del file
 
-            // Rimuovi il vecchio file se necessario
-            if ($travel->img_file && Storage::exists($travel->img_file)) {
-                Storage::delete($travel->img_file);
-            }
+        // Rimuovi il vecchio file se necessario
+        if ($travel->img_file && Storage::exists($travel->img_file)) {
+            Storage::delete($travel->img_file);
         }
-
-        $travel->update($validated);
-
-        return redirect()->route('admin.travels.index')->with('success', 'Viaggio aggiornato con successo.');
     }
+
+    $travel->update($validated);
+
+    // Reindirizza alla pagina di dettaglio del viaggio aggiornato
+    return redirect()->route('admin.travels.show', $travel->id)->with('success', 'Viaggio aggiornato con successo.');
+}
+
 
 
 
