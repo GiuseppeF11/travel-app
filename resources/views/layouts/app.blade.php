@@ -28,7 +28,7 @@
                             @csrf
 
                             <button type="submit" class="btn btn-outline-danger">
-                                Log Out
+                                Esci
                             </button>
                         </form>
                     </div>

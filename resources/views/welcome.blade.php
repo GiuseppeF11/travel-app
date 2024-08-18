@@ -13,8 +13,8 @@
 
                     <div class="row">
                         <div class="col d-flex justify-content-center gap-2">
-                            <a class="btn btn-dark" href="{{ route('login') }}">Login</a>
-                            <a class="btn btn-dark" href="{{ route('register') }}">Register</a>
+                            <a class="btn btn-dark" href="{{ route('login') }}">Accedi</a>
+                            <a class="btn btn-dark" href="{{ route('register') }}">Registrati</a>
                         </div>
                     </div>
                 </div>

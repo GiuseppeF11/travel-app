@@ -29,10 +29,10 @@
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                    <a class="nav-link" href="{{ route('login') }}">Accedi</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Registrati</a>
                                 </li>
                             @endauth
                         </ul>
@@ -42,7 +42,7 @@
                                 @csrf
 
                                 <button type="submit" class="btn btn-outline-danger">
-                                    Log Out
+                                    Esci
                                 </button>
                             </form>
                         @endauth

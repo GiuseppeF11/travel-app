@@ -18,7 +18,7 @@
 
         <div>
             <button type="submit">
-                Confirm
+                Conferma
             </button>
         </div>
     </form>
