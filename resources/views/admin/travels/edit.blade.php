@@ -44,7 +44,7 @@
                             <input type="file" name="img_file" id="img_file" class="form-control" accept="image/*">
 
                             <!-- Mostra l'anteprima dell'immagine esistente -->
-                            <div class="mt-2">
+                            <div class="my-2">
                                 <img id="image-preview" src="{{ asset('storage/' . $travel->img_file) }}" alt="{{ $travel->title }}">
                             </div>
                         </div>

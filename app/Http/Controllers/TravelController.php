@@ -32,21 +32,26 @@ class TravelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // Salvataggio del percorso dell'immagine
     public function store(TravelRequest $request)
     {
         $validated = $request->validated();
 
+        // Se l'utente ha caricato un file, salvalo e aggiorna il path nel validated data.
         if ($request->hasFile('img_file')) {
             $file = $request->file('img_file');
-            $path = $file->store('images', 'public'); // Salva l'immagine
-            $validated['img_file'] = $path;
+            $path = $file->store('images', 'public'); // Salva l'immagine nella cartella 'storage/app/public/images'
+            $validated['img_file'] = $path; // Salva solo il percorso relativo
         }
 
-        Travel::create(array_merge($validated, ['user_id' => Auth::id()]));
+        // Crea il nuovo viaggio e aggiungi l'user_id corrente.
+        $travel = Travel::create(array_merge($validated, ['user_id' => Auth::id()]));
 
-        return redirect()->route('admin.travels.index')->with('success', 'Viaggio creato con successo.');
+        // Reindirizza alla pagina di visualizzazione del viaggio appena creato.
+        return redirect()->route('admin.travels.show', $travel->id)->with('success', 'Viaggio creato con successo.');
     }
+
+
+
 
 
 

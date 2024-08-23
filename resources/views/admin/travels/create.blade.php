@@ -3,7 +3,7 @@
 @section('page-title', 'Crea Nuovo Viaggio')
 
 @section('main-content')
-    <div class="row">
+    <div class="row w-50 m-auto">
         <div class="col">
             <div class="card">
                 <div class="card-header">
@@ -60,7 +60,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             <div class="mt-2">
-                                <img id="img_preview" src="" alt="Anteprima Immagine" class="img-fluid" >
+                                <img id="img_preview" style="width: 300px" src="" alt="Anteprima Immagine" class="img-fluid">
                             </div>
                         </div>
                         

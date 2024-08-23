@@ -44,12 +44,12 @@
                                         <td>{{ $travel->end_date->format('d/m/Y') }}</td>
                                         <td>{{ $travel->location }}</td>
                                         <td>
-                                            <a href="{{ route('admin.travels.show', $travel) }}" class="btn btn-info btn-sm">Mostra</a>
-                                            <a href="{{ route('admin.travels.edit', $travel) }}" class="btn btn-warning btn-sm">Modifica</a>
+                                            <a href="{{ route('admin.travels.show', $travel) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-eye fs-5 p-1"></i></a>
+                                            <a href="{{ route('admin.travels.edit', $travel) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-file-pen fs-5 p-1"></i></a>
                                             <form action="{{ route('admin.travels.destroy', $travel) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo viaggio?')">Elimina</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo viaggio?')"><i class="fa-solid fa-trash-can fs-5 p-1"></i></button>
                                             </form>
                                         </td>
                                     </tr>
