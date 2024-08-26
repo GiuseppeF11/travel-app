@@ -51,7 +51,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Salva Tappa</button>
-                    <a href="{{ route('admin.stages.index') }}" class="btn btn-secondary">Annulla</a>
+                    <a href="{{ route('admin.travels.index') }}" class="btn btn-secondary">Annulla</a>
                 </form>
             </div>
         </div>
