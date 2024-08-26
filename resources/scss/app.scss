@@ -5,5 +5,31 @@
 
 body {
     font-family: "Roboto Condensed", sans-serif;
+}
 
+//  BUTTONS
+
+.btn-1 {
+    color: whitesmoke;
+    background-color: #383E5E;
+    border-color: grey;
+
+    &:hover {
+        background-color: #464e77;
+        border-color: grey;
+        color: whitesmoke;
+    }
+
+    &:active {
+        background-color: #464e77;
+        border-color: grey;
+    }
+
+    i {
+        color: whitesmoke;
+    }
+}
+
+i {
+    color: #383E5E;
 }

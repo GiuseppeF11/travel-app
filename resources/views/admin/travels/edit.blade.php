@@ -35,8 +35,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="description">Descrizione</label>
-                            <textarea name="description" id="description" class="form-control" rows="4" required>{{ old('description', $travel->description) }}</textarea>
+                            <label for="description">Note</label>
+                            <textarea name="description" id="description" class="form-control" rows="4">{{ old('description', $travel->description) }}</textarea>
                         </div>
 
                         <div class="form-group">

@@ -9,9 +9,9 @@
                 <div class="card-header bg-dark-subtle justify-content-between d-flex">
                     <h3>{{ $travel->title }}</h3>
                     <div>
-                        <a href="{{ route('admin.travels.index') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Torna all'elenco</a>
+                        <a href="{{ route('admin.travels.index') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left text-light"></i> Torna all'elenco</a>
                         <a href="{{ route('admin.travels.edit', $travel->id) }}" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i> Modifica</a>
-                        <a href="{{ route('admin.stages.create', ['travel_id' => $travel->id]) }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Aggiungi Tappa</a>
+                        <a href="{{ route('admin.stages.create', ['travel_id' => $travel->id]) }}" class="btn btn-1 btn-dark"><i class="fa-solid fa-plus"></i> Aggiungi Tappa</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -73,12 +73,12 @@
     }
 
     .stages {
-    max-height: 400px; /* Imposta un'altezza massima fissa per la sezione */
-    overflow-y: auto; /* Aggiunge la scrollbar verticale se il contenuto supera l'altezza massima */
+    max-height: 400px;
+    overflow-y: auto;
     }
 
     .stages .list-group-item {
-        word-wrap: break-word; /* Assicura che il testo non esca dai limiti del contenitore */
+        word-wrap: break-word;
     }
 
 </style>

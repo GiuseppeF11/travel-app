@@ -13,16 +13,21 @@
     </head>
     <body>
         <header>
-            <nav class="navbar h-100 navbar-expand-lg bg-body-tertiary">
+            <nav class="p-0 navbar h-100 navbar-expand-lg bg-body-tertiary">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ route('admin.travels.index') }}">Logo del sito</a>
+                    <div class="logo">
+                        <img src="/images/Logo_Meridiano.png" alt="logo.meridiano">
+                    </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.travels.index') }}">Viaggi</a>
+                                <a class="nav-link" href="{{ route('admin.travels.index') }}"><i class="fa-solid fa-plane-departure "></i><span> Viaggi</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.travels.index') }}"><i class="fa-solid fa-gear "></i> <span>Impostazioni</span></a>
                             </li>
                         </ul>
                         <form method="POST" action="{{ route('logout') }}">
@@ -49,11 +54,21 @@
 <style lang="scss" scoped>
     header {
         height: 10vh;
+
+        .logo {
+            width: 60px;
+            height:100%;
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+            }
+        }
     }
     main {
         min-height: 90vh;
     }
-    .bg-image {
+    /* .bg-image {
     position: relative;
     z-index: 1;
 }
@@ -65,10 +80,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(https://img.freepik.com/vettori-premium/viaggio-vacanza-avventura-estate-mare-modello-senza-cuciture-pattern-swatches-texture-puo-essere-utilizzato-per-il-pattern-di-sfondo-riempie-la-pagina-web-backgroundsurface_506811-1064.jpg);
+    background-size: cover;
+    background-position: center;
+    background-image: url(https://static.vecteezy.com/system/resources/previews/015/414/382/non_2x/world-map-isolated-on-white-background-flat-earth-map-template-for-web-site-pattern-anual-report-inphographics-worldmap-icon-travel-worldwide-map-silhouette-vector.jpg);
     filter: brightness(0.7);
     z-index: -1;
-}
+} */
 
 
 </style>
