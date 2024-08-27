@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-center align-items-center" style="height: 80vh">
         <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
             <div class="card-body text-center">
-                <h2 class="card-title mb-4">Login</h2>
+                <h2 class="card-title mb-4 color-1 ">Login</h2>
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -35,13 +35,13 @@
 
                     @if (Route::has('password.request'))
                         <div class="mb-3">
-                            <a href="{{ route('password.request') }}" class="text-decoration-none">
+                            <a href="{{ route('password.request') }}" class="text-decoration-none color-1">
                                 Password dimenticata?
                             </a>
                         </div>
                     @endif
 
-                    <button type="submit" class="btn btn-primary w-100 rounded-pill">
+                    <button type="submit" class="btn btn-1 w-100 rounded-pill">
                         Accedi
                     </button>
                 </form>
