@@ -71,24 +71,5 @@
         min-height: 90vh;
         background-size: cover
     }
-    /* .bg-image {
-    position: relative;
-    z-index: 1;
-}
-
-.bg-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-image: url(https://static.vecteezy.com/system/resources/previews/015/414/382/non_2x/world-map-isolated-on-white-background-flat-earth-map-template-for-web-site-pattern-anual-report-inphographics-worldmap-icon-travel-worldwide-map-silhouette-vector.jpg);
-    filter: brightness(0.7);
-    z-index: -1;
-} */
-
 
 </style>

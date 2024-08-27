@@ -39,10 +39,12 @@
 
                         <div class="form-group">
                             <label for="location">Luogo</label>
-                            <input type="text" name="location" id="location" class="form-control" value="{{ old('location') }}" required>
+                            <input type="text" name="location" id="location" class="form-control" value="{{ old('location') }}" required autocomplete="off">
                             @error('location')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                            <!-- Div per mostrare i suggerimenti -->
+                            <div id="suggestions" class="list-group mt-2"></div>
                         </div>
 
                         <div class="form-group">
@@ -53,7 +55,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group my-3">
                             <label for="img_file">Carica Immagine</label>
                             <input type="file" name="img_file" id="img_file" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
                             @error('img_file')
@@ -64,8 +66,7 @@
                             </div>
                         </div>
                         
-
-                        <button type="submit" class="btn btn-primary">Crea Viaggio</button>
+                        <button type="submit" class="btn btn-1">Crea Viaggio</button>
                         <a href="{{ route('admin.travels.index') }}" class="btn btn-secondary">Annulla</a>
                     </form>
                 </div>
@@ -73,7 +74,40 @@
         </div>
     </div>
 
+    <!-- Aggiungi il codice JavaScript per l'autocompletamento -->
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const locationInput = document.getElementById('location');
+            const suggestions = document.getElementById('suggestions');
+
+            locationInput.addEventListener('input', function () {
+                const query = locationInput.value;
+
+                if (query.length > 2) {
+                    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            suggestions.innerHTML = '';
+
+                            data.forEach(item => {
+                                const option = document.createElement('a');
+                                option.classList.add('list-group-item', 'list-group-item-action');
+                                option.textContent = item.display_name;
+                                option.addEventListener('click', function() {
+                                    locationInput.value = item.display_name;
+                                    suggestions.innerHTML = '';
+                                });
+
+                                suggestions.appendChild(option);
+                            });
+                        });
+                } else {
+                    suggestions.innerHTML = '';
+                }
+            });
+        });
+
+        // Anteprima immagine
         document.getElementById('img_file').addEventListener('change', function() {
             const file = this.files[0];
             if (file) {
@@ -88,3 +122,13 @@
         });
     </script>
 @endsection
+
+
+<style lang="scss" scoped>
+
+.card-body {
+    max-height: 70vh;
+    overflow: auto;
+}
+
+</style>
