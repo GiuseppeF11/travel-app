@@ -35,6 +35,11 @@ class Travel extends Model
         return $this->hasMany(Stage::class);
     }
 
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     public function getImgUrlAttribute()
     {
         return Storage::url($this->attributes['img_file']);

@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TravelSeeder::class,
             StageSeeder::class,
+            PhotoSeeder::class,
         ]);
     }
 }

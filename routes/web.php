@@ -14,11 +14,12 @@ Route::prefix('admin')
     ->name('admin.')
     ->middleware('auth')
     ->group(function () {
-    
-    // Rotte per Travel CRUD
-    Route::resource('travels', TravelController::class);
-    Route::resource('stages', StageController::class);
+        Route::resource('travels', TravelController::class);
 
-});
+        // Rotta personalizzata per aggiungere foto a un viaggio esistente
+        Route::put('travels/{travel}/add-photos', [TravelController::class, 'addPhotos'])->name('travels.addPhotos');
+
+        Route::resource('stages', StageController::class);
+    });
 
 require __DIR__.'/auth.php';

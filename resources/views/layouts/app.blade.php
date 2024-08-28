@@ -13,7 +13,7 @@
     </head>
     <body>
         <header>
-            <nav class="p-0 navbar h-100 navbar-expand-lg bg-body-tertiary">
+            <nav class="p-0 navbar h-100 navbar-expand-lg bg-body-tertiary fs-5">
                 <div class="container">
                     <div class="logo">
                         <img src="/images/Logo_Meridiano.png" alt="logo.meridiano">
@@ -69,7 +69,7 @@
         background-image: url(/images/wallpaper.jpg);
         padding: 30px 0;
         min-height: 90vh;
-        background-size: cover
+        background-size: contain;
     }
 
 </style>

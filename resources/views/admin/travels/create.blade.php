@@ -20,6 +20,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                       
 
                         <div class="form-group">
                             <label for="start_date">Data Inizio</label>

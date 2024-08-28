@@ -19,7 +19,7 @@ class TravelRequest extends FormRequest
             'end_date' => 'required|date|after_or_equal:start_date',
             'location' => 'required|string|max:250',
             'description' => 'nullable|string',
-            'img_file' => 'required|max:2048',
+            'img_file' => 'required|image|max:2048',
         ];
     }
 
@@ -37,8 +37,9 @@ class TravelRequest extends FormRequest
             'location.required' => 'La località è obbligatoria.',
             'location.string' => 'La località deve essere una stringa.',
             'location.max' => 'La località non può superare i 250 caratteri.',
-            'description.text' => 'La descrizione deve essere un testo.',
             'img_file.required' => 'L\'immagine è obbligatoria.',
+            'img_file.image' => 'Il file caricato deve essere un\'immagine.',
+            'img_file.max' => 'L\'immagine non può superare i 2 MB.',
         ];
     }
 }
