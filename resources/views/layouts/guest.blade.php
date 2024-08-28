@@ -64,10 +64,11 @@
     }
 
 
-main {
-    background-image: url(/images/wallpaper.jpg);
-    padding: 30px 0;
-    min-height: 90vh;
-}
+    main {
+        background-image: url(/images/wallpaper.jpg);
+        padding: 30px 0;
+        min-height: 90vh;
+        background-size: cover
+    }
 
 </style>

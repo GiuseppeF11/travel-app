@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Stage;
 use App\Models\Travel;
+use App\Http\Requests\StageRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class StageController extends Controller
 {
@@ -43,26 +43,18 @@ class StageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-{
-    // Validazione dei dati
-    $validated = $request->validate([
-        'travel_id' => 'required|exists:travel,id',
-        'title' => 'required|string|max:255',
-        'stage_start_date' => 'required|date',
-        'stage_end_date' => 'required|date',
-        'start_time' => 'nullable|date_format:H:i',
-        'end_time' => 'nullable|date_format:H:i',
-        'description' => 'nullable|string',
-    ]);
+    public function store(StageRequest $request)
+    {
+        // I dati sono già validati
+        $validated = $request->validated();
 
-    // Crea la nuova tappa
-    $stage = Stage::create($validated);
+        // Crea la nuova tappa
+        $stage = Stage::create($validated);
 
-    // Reindirizza alla pagina di dettaglio del viaggio
-    return redirect()->route('admin.travels.show', $validated['travel_id'])
-                     ->with('success', 'Tappa aggiunta con successo.');
-}
+        // Reindirizza alla pagina di dettaglio del viaggio
+        return redirect()->route('admin.travels.show', $validated['travel_id'])
+                         ->with('success', 'Tappa aggiunta con successo.');
+    }
 
 
     /**
@@ -86,26 +78,21 @@ class StageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Stage $stage)
-{
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'stage_start_date' => 'required|date',
-        'stage_end_date' => 'required|date',
-        'start_time' => 'nullable|date_format:H:i',
-        'end_time' => 'nullable|date_format:H:i',
-        'description' => 'nullable|string',
-    ]);
+    public function update(StageRequest $request, Stage $stage)
+    {
+        // I dati sono già validati
+        $validated = $request->validated();
 
-    $stage->update($validated);
+        // Aggiorna la tappa esistente
+        $stage->update($validated);
 
-    // Recupera l'ID del viaggio associato alla tappa
-    $travelId = $stage->travel_id;
+        // Recupera l'ID del viaggio associato alla tappa
+        $travelId = $stage->travel_id;
 
-    // Reindirizza alla pagina di dettaglio del viaggio
-    return redirect()->route('admin.travels.show', ['travel' => $travelId])
-                     ->with('success', 'Tappa aggiornata con successo.');
-}
+        // Reindirizza alla pagina di dettaglio del viaggio
+        return redirect()->route('admin.travels.show', ['travel' => $travelId])
+                         ->with('success', 'Tappa aggiornata con successo.');
+    }
 
     
 
