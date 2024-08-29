@@ -7,6 +7,8 @@
 
         <title>@yield('page-title') | {{ config('app.name', 'Meridiano') }}</title>
 
+        <link rel="icon" href="{{ asset('images/Logo_Meridiano.png') }}">
+
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>

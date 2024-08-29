@@ -30,12 +30,27 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Definizione delle regole di validazione
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            // Messaggi personalizzati
+            'name.required' => 'Il campo nome è obbligatorio.',
+            'name.string' => 'Il nome deve essere una stringa.',
+            'name.max' => 'Il nome non può superare i 255 caratteri.',
+            'email.required' => "L'indirizzo email è obbligatorio.",
+            'email.string' => "L'indirizzo email deve essere una stringa.",
+            'email.lowercase' => "L'indirizzo email deve essere in minuscolo.",
+            'email.email' => "L'indirizzo email deve essere valido.",
+            'email.max' => "L'indirizzo email non può superare i 255 caratteri.",
+            'email.unique' => "L'indirizzo email è già stato registrato.",
+            'password.required' => 'Il campo password è obbligatorio.',
+            'password.confirmed' => 'Le password non corrispondono.',
         ]);
 
+        // Creazione del nuovo utente
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -49,3 +64,4 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 }
+

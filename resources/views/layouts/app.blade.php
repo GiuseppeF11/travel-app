@@ -5,6 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <!-- Favicon principale -->
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
+        <!-- Alternativa PNG -->
+        <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
+
         {{-- FONT AWESOME --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -37,7 +43,7 @@
                                 <a class="nav-link" href="{{ route('admin.travels.index') }}"><i class="fa-solid fa-gear "></i> <span>Impostazioni</span></a>
                             </li>
                         </ul>
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form class="m-0" method="POST" action="{{ route('logout') }}">
                             @csrf
 
                             <button type="submit" class="btn btn-outline-danger">
@@ -61,6 +67,9 @@
 <style lang="scss" scoped>
     header {
         height: 10vh;
+        position: sticky;
+        top: 0;
+        z-index: 10001;
 
         .logo {
             width: 60px;

@@ -85,9 +85,29 @@
 
 
 <style lang="scss" scoped>
-    .table {
-        background: red;
-        max-height: 200px;
-        overflow: auto;
+    .table th,
+    .table td {
+        vertical-align: middle;
     }
-</style>
+    
+    .table th {
+        white-space: nowrap;
+    }
+
+    .table td:nth-child(1) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .table td:nth-child(4) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .table td:nth-child(5) {
+        white-space: nowrap;
+    }
+    </style>
+    

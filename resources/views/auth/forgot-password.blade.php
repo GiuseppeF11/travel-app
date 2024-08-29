@@ -20,7 +20,7 @@
                         <input type="email" id="email" name="email" class="form-control rounded-pill" required autofocus>
                     </div>
 
-                    <button type="submit" class="btn btn-primary px-4 rounded-pill">
+                    <button type="submit" class="btn btn-1 px-4 rounded-pill">
                         {{ __('Invia il link') }}
                     </button>
                 </form>
