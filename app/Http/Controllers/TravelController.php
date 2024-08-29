@@ -13,12 +13,36 @@ class TravelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        // Mostra solo i viaggi dell'utente loggato
-        $travels = Travel::where('user_id', Auth::id())->get();
-        return view('admin.travels.index', compact('travels'));
+    public function index(Request $request)
+{
+    // Ottieni l'ID dell'utente loggato
+    $userId = Auth::id();
+
+    // Inizia la query per filtrare i viaggi dell'utente loggato
+    $query = Travel::where('user_id', $userId);
+
+    // Filtra per titolo se fornito
+    if ($request->filled('title')) {
+        $query->where('title', 'like', '%' . $request->input('title') . '%');
     }
+
+    // Filtra per data di inizio se fornita
+    if ($request->filled('start_date')) {
+        $query->whereDate('start_date', '>=', $request->input('start_date'));
+    }
+
+    // Filtra per data di fine se fornita
+    if ($request->filled('end_date')) {
+        $query->whereDate('end_date', '<=', $request->input('end_date'));
+    }
+
+    // Esegui la query e ottieni i risultati con paginazione
+    $travels = $query->paginate(10);
+
+    // Passa i risultati alla vista
+    return view('admin.travels.index', compact('travels'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -56,7 +80,7 @@ class TravelController extends Controller
             }
         }
 
-        return redirect()->route('travels.index')->with('success', 'Viaggio creato con successo.');
+        return redirect()->route('admin.travels.index')->with('success', 'Viaggio creato con successo.');
     }
 
     public function addPhotos(Request $request, Travel $travel)

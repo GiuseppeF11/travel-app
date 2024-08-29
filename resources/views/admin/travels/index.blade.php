@@ -1,5 +1,3 @@
-<!-- resources/views/admin/travels/index.blade.php -->
-
 @extends('layouts.app')
 
 @section('page-title', 'I Tuoi Viaggi')
@@ -15,7 +13,25 @@
                     <h3 style="color: #383E5E">I Tuoi Viaggi</h3>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('admin.travels.create') }}" class="btn btn-1 btn-dark"><i class="fa-solid fa-plus"></i> Aggiungi Viaggio</a>
+                    <a href="{{ route('admin.travels.create') }}" class="btn btn-1 btn-dark mb-3"><i class="fa-solid fa-plus"></i> Aggiungi Viaggio</a>
+
+                    <!-- Form di ricerca -->
+                    <form action="{{ route('admin.travels.index') }}" method="GET" class="mb-4">
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <input type="text" name="title" class="form-control" placeholder="Cerca per titolo" value="{{ request('title') }}">
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <input type="date" name="start_date" class="form-control" placeholder="Data Inizio" value="{{ request('start_date') }}">
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <input type="date" name="end_date" class="form-control" placeholder="Data Fine" value="{{ request('end_date') }}">
+                            </div>
+                            <div class="col-md-2 mb-2">
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-search"></i> Filtra</button>
+                            </div>
+                        </div>
+                    </form>
 
                     @if(session('success'))
                         <div class="alert alert-success">
@@ -56,6 +72,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $travels->links() }} <!-- Aggiungi paginazione -->
                     @endif
                 </div>
             </div>
