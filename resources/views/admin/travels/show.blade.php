@@ -15,6 +15,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    {{-- SEZIONE DETTAGLI VIAGGIO --}}
                     <section class="row mb-3">
                         <div class="col">
                             <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-calendar-days text-light"></i> Periodo</strong> {{ $travel->start_date->format('d/m/Y') }} - {{ $travel->end_date->format('d/m/Y')}}</p>
@@ -35,6 +36,7 @@
                         </div>
                     </section>
 
+                    {{-- SEZIONE FOTO --}}
                     <section class="">
                         <div class="d-flex gap-3">
                             <form class="p-0 m-0"  id="photoUploadForm" action="{{ route('admin.travels.addPhotos', $travel->id) }}" method="POST" enctype="multipart/form-data">
@@ -46,7 +48,8 @@
                                 <button type="button" class="btn btn-1" id="uploadButton"><i class="fa-regular fa-image"></i> Aggiungi Foto</button>
                             </form>
 
-                            <button class="btn btn-success"><i class="fa-regular fa-images text-light"></i> Album</button>
+                            <a href="{{ route('admin.travels.photos.index', ['travel' => $travel->id]) }}" class="btn btn-success"><i class="fa-regular fa-images text-light"></i> Album</a>
+
                         </div>
                         
                         <script>
@@ -69,30 +72,36 @@
                         
                         
                         
-    
+                        {{-- CAROSELLO --}}
                         <section class="mb-5 mt-3 carousel">
                             <h2>Album</h2>
-                            <div id="travelPhotosSwiper" class="swiper-container">
-                                <div class="swiper-wrapper">
-                                    @foreach($travel->photos as $photo)
-                                        <div class="swiper-slide">
-                                            @if (Str::startsWith($photo->file_path, 'https://'))
-                                                <img src="{{ $photo->file_path }}" class="d-block w-50 m-auto rounded-2" alt="Foto">
-                                            @else
-                                                <img src="{{ asset('storage/' . $photo->file_path) }}" class="d-block w-50 m-auto rounded-2" alt="Foto">
-                                            @endif
-                                            @if(!empty($photo->description))
-                                                <div class="carousel-caption d-none d-md-block">
-                                                    <p>{{ $photo->description }}</p>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    @endforeach
+                            
+                            @if($travel->photos->isNotEmpty())
+                                <div id="travelPhotosSwiper" class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        @foreach($travel->photos as $photo)
+                                            <div class="swiper-slide">
+                                                @if (Str::startsWith($photo->file_path, 'https://'))
+                                                    <img src="{{ $photo->file_path }}" class="d-block w-50 m-auto rounded-2" alt="Foto">
+                                                @else
+                                                    <img src="{{ asset('storage/' . $photo->file_path) }}" class="d-block w-50 m-auto rounded-2" alt="Foto">
+                                                @endif
+                                                @if(!empty($photo->description))
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <p>{{ $photo->description }}</p>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="swiper-button-next text-secondary p-5"></div>
+                                    <div class="swiper-button-prev text-secondary p-5"></div>
                                 </div>
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                            </div>
+                            @else
+                                <p>Nessuna foto nell'album.</p>
+                            @endif
                         </section>
+                        
                         
                         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
                         <script>
@@ -111,7 +120,7 @@
                     </section>       
                                        
 
-                    <!-- Sezione per visualizzare le tappe del viaggio -->
+                    {{-- SEZIONE TAPPE DEL VIAGGIO --}}
                     <section class="py-4">
                         <h4 class="bg-dark-subtle p-2 my-0 border-2 rounded-2 rounded-bottom-0">Tappe</h4>
                         <div class="stages">
@@ -155,9 +164,10 @@
         min-height: 80vh;
     }
     .cover_travel {
-        width: 400px;
+        height: 200px;
         img {
-            width:100%;
+            height:100%;
+            object-fit:cover;
         }
     }
 
