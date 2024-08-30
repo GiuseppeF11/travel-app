@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Foto di ' . $travel->title)
+@section('page-title', 'Album di ' . $travel->title)
 
 @section('main-content')
     <div class="container">
@@ -175,6 +175,11 @@
     object-fit: cover; 
     width: 100%; 
     cursor: pointer;
+    transition: linear 0.2s;
+
+    &:hover {
+        filter: brightness(60%)
+    }
 }
 
 .card {
@@ -253,8 +258,8 @@
 
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 80px;
+    right: 50px;
     background: rgba(0, 0, 0, 0.5); 
     color: #fff;
     border: none;

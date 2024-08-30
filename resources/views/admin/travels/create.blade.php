@@ -63,7 +63,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             <div class="mt-2">
-                                <img id="img_preview" style="width: 300px" src="" alt="Anteprima Immagine" class="img-fluid">
+                                <img id="img_preview" style="width: 300px; display: none;" src="" alt="Anteprima Immagine" class="img-fluid">
                             </div>
                         </div>
                         
