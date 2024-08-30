@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Controllers
@@ -10,6 +11,16 @@ use App\Http\Controllers\StageController;
 use App\Http\Controllers\PhotoController;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
+
+Route::get('page-details', function () {
+    return view('layouts.page-details');
+})->name('page-details');
+
+
+Route::get('contact-us', function () {
+    return view('layouts.contact-us');
+})->name('contact-us');
+
 
 Route::prefix('admin')
     ->name('admin.')

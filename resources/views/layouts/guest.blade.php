@@ -7,6 +7,10 @@
 
         <title>@yield('page-title') | {{ config('app.name', 'Meridiano') }}</title>
 
+        <!-- Aggiungi il CSS di AOS nella sezione head -->
+        <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+
         <link rel="icon" href="{{ asset('images/Logo_Meridiano.png') }}">
 
         <!-- Scripts -->
@@ -16,9 +20,9 @@
         <header>
             <nav class="navbar navbar-expand-lg bg-body-tertiary h-100 fs-5">
                 <div class="container">
-                    {{-- <div class="logo">
+                    <a class="logo" href="/">
                         <img src="/images/Logo_Meridiano.png" alt="logo.meridiano">
-                    </div> --}}
+                    </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -28,11 +32,17 @@
                                 
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/">Chi siamo?</a>
+                                    <a class="nav-link" href="{{ route('page-details') }}">Chi siamo?</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/">Contatti</a>
+                                    <a class="nav-link" href="{{ route('contact-us') }}">Contatti</a>
                                 </li>
+                                {{-- <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">Accedi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">Registrati</a>
+                                </li> --}}
                             @endauth
                         </ul>
 
@@ -55,6 +65,12 @@
                 @yield('main-content')
             </div>
         </main>
+        <!-- Aggiungi il JS di AOS prima della chiusura del body -->
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+
     </body>
 </html>
 
@@ -63,6 +79,16 @@
 
     header {
         height: 10vh;
+        position: sticky;
+        top: 0;
+        z-index: 10001;
+    }
+
+    .logo {
+        width: 70px;
+        img {
+            width:100%;
+        }
     }
 
 

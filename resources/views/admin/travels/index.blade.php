@@ -49,8 +49,8 @@
                             <thead>
                                 <tr>
                                     <th>Titolo</th>
-                                    <th>Data Inizio</th>
-                                    <th>Data Fine</th>
+                                    <th class="d-sm-none d-md-table-cell">Data Inizio</th>
+                                    <th class="d-sm-none d-md-table-cell">Data Fine</th>
                                     <th>Luogo</th>
                                     <th>Azioni</th>
                                 </tr>
@@ -59,9 +59,9 @@
                                 @foreach($travels as $travel)
                                     <tr>
                                         <td>{{ $travel->title }}</td>
-                                        <td>{{ $travel->start_date->format('d/m/Y') }}</td>
-                                        <td>{{ $travel->end_date->format('d/m/Y') }}</td>
-                                        <td>{{ $travel->location }}</td>
+                                        <td class="d-sm-none d-md-table-cell">{{ $travel->start_date->format('d/m/Y') }}</td>
+                                        <td class="d-sm-none d-md-table-cell">{{ $travel->end_date->format('d/m/Y') }}</td>
+                                        <td class="truncate-text">{{ $travel->location }}</td>
                                         <td>
                                             <a href="{{ route('admin.travels.show', $travel) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-eye fs-5 p-1"></i> Mostra</a>
                                             <a href="{{ route('admin.travels.edit', $travel) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-file-pen fs-5 p-1"></i> Modifica</a>
@@ -75,7 +75,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $travels->links() }} <!-- Aggiungi paginazione -->
+                        {{ $travels->links() }}
                     @endif
                 </div>
             </div>
@@ -94,12 +94,6 @@
         white-space: nowrap;
     }
 
-    .table td:nth-child(1) {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
     .table td:nth-child(4) {
         white-space: nowrap;
         overflow: hidden;
@@ -108,6 +102,13 @@
     
     .table td:nth-child(5) {
         white-space: nowrap;
+    }
+
+    .truncate-text {
+        max-width: 300px; /* Larghezza massima per la colonna, puoi modificarla in base alle tue esigenze */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     </style>
     
