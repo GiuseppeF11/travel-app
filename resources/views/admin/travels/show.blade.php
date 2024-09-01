@@ -26,10 +26,10 @@
                             <div class="cover_travel">
                                 @if (Str::startsWith($travel->img_file, 'https://'))
                                 <!-- Caso 1: URL esterno -->
-                                <img class="border rounded-2 w-100" src="{{ $travel->img_file }}" alt="{{ $travel->title }}">
+                                <img class="border rounded-2" src="{{ $travel->img_file }}" alt="{{ $travel->title }}">
                                 @else
                                     <!-- Caso 2: File nella cartella storage -->
-                                    <img class=" border rounded-2 w-100" src="{{ asset('storage/' . $travel->img_file) }}" alt="{{ $travel->title }}">
+                                    <img class=" border rounded-2" src="{{ asset('storage/' . $travel->img_file) }}" alt="{{ $travel->title }}">
                                 @endif
                             </div>
                             
@@ -164,8 +164,10 @@
         min-height: 80vh;
     }
     .cover_travel {
-        height: 200px;
+        max-width: 400px;
+        max-height: 200px;
         img {
+            width:100%;
             height:100%;
             object-fit:cover;
         }
