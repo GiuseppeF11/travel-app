@@ -28,7 +28,7 @@
 
             <!-- Pulsante per eliminazione multipla -->
             <button type="submit" class="btn btn-danger mb-3" id="deleteSelectedButton">
-                <i class="fa-solid fa-trash text-light"></i> Elimina Selezionate
+                <i class="fa-solid fa-trash text-light"></i> Elimina
             </button>
 
             @if($photos->isEmpty())

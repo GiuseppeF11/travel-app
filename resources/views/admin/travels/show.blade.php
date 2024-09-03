@@ -7,34 +7,32 @@
         <div class="col">
             <div class="card">
                 <div class="card-header bg-dark-subtle justify-content-between d-flex">
-                    <h3>{{ $travel->title }}</h3>
+                    <h3 class="color-1">{{ $travel->title }}</h3>
                     <div>
                         <a href="{{ route('admin.travels.index') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left text-light"></i> Torna all'elenco</a>
                         <a href="{{ route('admin.travels.edit', $travel->id) }}" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i> Modifica</a>
                         <a href="{{ route('admin.stages.create', ['travel_id' => $travel->id]) }}" class="btn btn-1 btn-dark"><i class="fa-solid fa-plus"></i> Aggiungi Tappa</a>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="card-body">
                     {{-- SEZIONE DETTAGLI VIAGGIO --}}
                     <section class="row mb-3">
-                        <div class="col">
-                            <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-calendar-days text-light"></i> Periodo</strong> {{ $travel->start_date->format('d/m/Y') }} - {{ $travel->end_date->format('d/m/Y')}}</p>
-                            <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-location-dot text-light"></i> Luogo</strong> {{ $travel->location }}</p>
-                            <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-note-sticky text-light"></i> Note</strong> {{ $travel->description }}</p>
-                        </div>
-                        <div class="col-auto">
-                            <div class="cover_travel">
+                        <div class="col p-4 cover_image" style="
+                            background-image: url(
                                 @if (Str::startsWith($travel->img_file, 'https://'))
-                                <!-- Caso 1: URL esterno -->
-                                <img class="border rounded-2" src="{{ $travel->img_file }}" alt="{{ $travel->title }}">
+                                    '{{ $travel->img_file }}'
                                 @else
-                                    <!-- Caso 2: File nella cartella storage -->
-                                    <img class=" border rounded-2" src="{{ asset('storage/' . $travel->img_file) }}" alt="{{ $travel->title }}">
+                                    '{{ asset('storage/' . $travel->img_file) }}'
                                 @endif
+                            );">
+                            <div class="travel_details">
+                                <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-calendar-days text-light"></i> Periodo</strong> {{ $travel->start_date->format('d/m/Y') }} - {{ $travel->end_date->format('d/m/Y')}}</p>
+                                <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-location-dot text-light"></i> Luogo</strong> {{ $travel->location }}</p>
+                                <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-note-sticky text-light"></i> Note</strong> {{ $travel->description }}</p>
                             </div>
-                            
                         </div>
                     </section>
+                    
 
                     {{-- SEZIONE FOTO --}}
                     <section class="">
@@ -74,7 +72,7 @@
                         
                         {{-- CAROSELLO --}}
                         <section class="mb-5 mt-3 carousel">
-                            <h2>Album</h2>
+                            <h2 class="color-1">Album</h2>
                             
                             @if($travel->photos->isNotEmpty())
                                 <div id="travelPhotosSwiper" class="swiper-container">
@@ -122,7 +120,7 @@
 
                     {{-- SEZIONE TAPPE DEL VIAGGIO --}}
                     <section class="py-4">
-                        <h4 class="bg-dark-subtle p-2 my-0 border-2 rounded-2 rounded-bottom-0">Tappe</h4>
+                        <h4 class="bg-dark-subtle p-2 my-0 border-2 rounded-2 rounded-bottom-0 color-1">Tappe</h4>
                         <div class="stages">
                             @if($stages->isEmpty())
                                 <p>Non ci sono tappe per questo viaggio.</p>
@@ -131,22 +129,51 @@
                             <div class="container p-0">
                                 <div class="">
                                     @foreach($stages as $stage)
-                                        <li class="list-group-item rounded-0 p-3 border mb-3 rounded-2">
-                                            <h5 class=" text-decoration-underline">{{ $stage->title }}</h5>
-                                            <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-calendar-days text-light"></i> Periodo</strong> {{ $stage->stage_start_date->format('d/m/Y') }} - {{ $stage->stage_end_date->format('d/m/Y') }}</p>
-                                            <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-clock text-light"></i> Orario</strong> {{ $stage->start_time ? $stage->start_time->format('H:i') : 'N/A' }} - {{ $stage->end_time ? $stage->end_time->format('H:i') : 'N/A' }}</p>                                        
-                                            <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-note-sticky text-light"></i> Note</strong>  {{ $stage->description ?? 'N/A' }}</p>
-                                            <a href="{{ route('admin.stages.show', $stage->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-circle-info"></i> Dettagli</a>
-                                            <a href="{{ route('admin.stages.edit', $stage->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-file-pen"></i> Modifica</a>
+    <li class="list-group-item rounded-0 p-3 border mb-3 rounded-2">
+        <h5 class=" text-decoration-underline">{{ $stage->title }}</h5>
+        <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-calendar-days text-light"></i> Periodo</strong> {{ $stage->stage_start_date->format('d/m/Y') }} - {{ $stage->stage_end_date->format('d/m/Y') }}</p>
+        <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-clock text-light"></i> Orario</strong> {{ $stage->start_time ? $stage->start_time->format('H:i') : 'N/A' }} - {{ $stage->end_time ? $stage->end_time->format('H:i') : 'N/A' }}</p>                                        
+        <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-note-sticky text-light"></i> Note</strong>  {{ $stage->description ?? 'N/A' }}</p>
+        <a href="{{ route('admin.stages.show', $stage->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-circle-info"></i> Dettagli</a>
+        <a href="{{ route('admin.stages.edit', $stage->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-file-pen"></i> Modifica</a>
 
-                                            <!-- Form per eliminare la tappa -->
-                                            <form action="{{ route('admin.stages.destroy', $stage->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm text-dark" onclick="return confirm('Sei sicuro di voler eliminare questa tappa?')"><i class="fa-solid fa-trash-can"></i> Elimina</button>
-                                            </form>
-                                        </li>
-                                    @endforeach
+        <!-- Modulo per la cancellazione -->
+        <form id="delete-form-{{ $stage->id }}" action="{{ route('admin.stages.destroy', $stage->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="button" class="btn btn-danger btn-sm text-dark" onclick="showConfirmationModal({{ $stage->id }})">
+                <i class="fa-solid fa-trash-can"></i> Elimina
+            </button>
+        </form>
+
+        <!-- Modal di conferma -->
+        <div id="confirmationModal-{{ $stage->id }}" class="modal-overlay">
+            <div class=" text-center bg-light text-dark rounded-2 p-5">
+                <h5>Conferma eliminazione</h5>
+                <p>Sei sicuro di voler eliminare questa tappa?</p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <button type="button" class="btn btn-secondary" onclick="closeConfirmationModal({{ $stage->id }})">Annulla</button>
+                    <button type="button" class="btn btn-danger" onclick="submitDeleteForm({{ $stage->id }})">Elimina</button>
+                </div>
+            </div>
+        </div>
+    </li>
+@endforeach
+
+<script>
+    function showConfirmationModal(stageId) {
+        document.getElementById('confirmationModal-' + stageId).style.display = 'flex';
+    }
+
+    function closeConfirmationModal(stageId) {
+        document.getElementById('confirmationModal-' + stageId).style.display = 'none';
+    }
+
+    function submitDeleteForm(stageId) {
+        document.getElementById('delete-form-' + stageId).submit();
+    }
+</script>
+
                                 </div>
 
                             </div>
@@ -163,15 +190,44 @@
     .card {
         min-height: 80vh;
     }
-    .cover_travel {
-        max-width: 400px;
-        max-height: 200px;
-        img {
-            width:100%;
-            height:100%;
-            object-fit:cover;
-        }
+
+    #card-body {
+        padding: 0 12;
     }
+    .cover_image {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        overflow: hidden;
+    }
+
+    .cover_image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: inherit; 
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(3px) brightness(0.4); 
+        background-blend-mode: darken;
+        z-index: 1; 
+    }
+
+    .cover_image > * {
+        position: relative;
+        z-index: 2;
+    }
+
+    .travel_details{
+        font-size: 20px;
+        font-weight: 700;
+        color: white;
+    }
+
 
     .carousel {
         height: 300px;
@@ -220,5 +276,23 @@
     .stages .list-group-item {
         word-wrap: break-word;
     }
+
+
+    /* Sfondo scuro */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.529);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    color: white;
+}
+
+
 
 </style>

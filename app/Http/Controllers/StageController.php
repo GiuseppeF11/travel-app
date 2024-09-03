@@ -12,7 +12,9 @@ class StageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    /* public function index(Request $request)
+    // Se necessario, decommenta e assicurati che funzioni correttamente.
+    /*
+    public function index(Request $request)
     {
         $travel_id = $request->get('travel_id');
         
@@ -20,7 +22,7 @@ class StageController extends Controller
 
         return view('admin.stages.index', compact('stages'));
     }
- */
+    */
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +41,6 @@ class StageController extends Controller
         ]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
@@ -55,7 +56,6 @@ class StageController extends Controller
         return redirect()->route('admin.travels.show', $validated['travel_id'])
                          ->with('success', 'Tappa aggiunta con successo.');
     }
-
 
     /**
      * Display the specified resource.
@@ -82,18 +82,17 @@ class StageController extends Controller
     {
         // I dati sono già validati
         $validated = $request->validated();
-
+    
         // Aggiorna la tappa esistente
         $stage->update($validated);
-
+    
         // Recupera l'ID del viaggio associato alla tappa
         $travelId = $stage->travel_id;
-
+    
         // Reindirizza alla pagina di dettaglio del viaggio
-        return redirect()->route('admin.travels.show', ['travel' => $travelId])
+        return redirect()->route('admin.travels.show', $travelId)
                          ->with('success', 'Tappa aggiornata con successo.');
     }
-
     
 
     /**
@@ -107,8 +106,7 @@ class StageController extends Controller
         $stage->delete();
 
         // Reindirizza alla pagina di dettaglio del viaggio
-        return redirect()->route('admin.travels.show', ['travel' => $travelId])
+        return redirect()->route('admin.travels.show', $travelId)
                         ->with('success', 'Tappa eliminata con successo.');
     }
-
 }

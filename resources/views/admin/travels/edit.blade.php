@@ -17,36 +17,36 @@
                             @csrf
                             @method('PUT')
     
-                            <div class="form-group">
-                                <label for="title">Titolo</label>
+                            <div class="form-group mb-3">
+                                <label for="title">Titolo</label><span class="text-danger">*</span>
                                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $travel->title) }}" required>
                             </div>
     
-                            <div class="form-group">
-                                <label for="start_date">Data Inizio</label>
+                            <div class="form-group mb-3">
+                                <label for="start_date">Data Inizio</label><span class="text-danger">*</span>
                                 <input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('start_date', $travel->start_date->format('Y-m-d')) }}" required>
                             </div>
     
-                            <div class="form-group">
-                                <label for="end_date">Data Fine</label>
+                            <div class="form-group mb-3">
+                                <label for="end_date">Data Fine</label><span class="text-danger">*</span>
                                 <input type="date" name="end_date" id="end_date" class="form-control" value="{{ old('end_date', $travel->end_date->format('Y-m-d')) }}" required>
                             </div>
     
-                            <div class="form-group">
-                                <label for="location">Luogo</label>
+                            <div class="form-group mb-3">
+                                <label for="location">Luogo</label><span class="text-danger">*</span>
                                 <input type="text" name="location" id="location" class="form-control" value="{{ old('location', $travel->location) }}" required autocomplete="off">
                                 <!-- Div per mostrare i suggerimenti -->
                                 <div id="suggestions" class="list-group mt-2"></div>
                             </div>
     
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label for="description">Note</label>
                                 <textarea name="description" id="description" class="form-control" rows="4">{{ old('description', $travel->description) }}</textarea>
                             </div>
     
-                            <div class="form-group">
-                                <label for="img_file">Immagine</label>
-                                <input type="file" name="img_file" id="img_file" class="form-control" accept="image/*">
+                            <div class="form-group mb-3">
+                                <label for="img_file">Immagine</label><span class="text-danger">*</span>
+                                <input type="file" name="img_file" id="img_file" class="form-control" accept="image/*" required>
                             
                                 <!-- Mostra l'anteprima dell'immagine esistente -->
                                 <div class="my-2">

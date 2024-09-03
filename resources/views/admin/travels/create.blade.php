@@ -13,8 +13,8 @@
                     <form action="{{ route('admin.travels.store') }}" method="POST">
                         @csrf
 
-                        <div class="form-group">
-                            <label for="title">Titolo</label>
+                        <div class="form-group mb-3">
+                            <label for="title">Titolo</label><span class="text-danger">*</span>
                             <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
                             @error('title')
                                 <div class="text-danger">{{ $message }}</div>
@@ -22,24 +22,24 @@
                         </div>
                        
 
-                        <div class="form-group">
-                            <label for="start_date">Data Inizio</label>
+                        <div class="form-group mb-3">
+                            <label for="start_date">Data Inizio</label><span class="text-danger">*</span>
                             <input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('start_date') }}" required>
                             @error('start_date')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="end_date">Data Fine</label>
+                        <div class="form-group mb-3">
+                            <label for="end_date">Data Fine</label><span class="text-danger">*</span>
                             <input type="date" name="end_date" id="end_date" class="form-control" value="{{ old('end_date') }}" required>
                             @error('end_date')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="location">Luogo</label>
+                        <div class="form-group mb-3">
+                            <label for="location">Luogo</label><span class="text-danger">*</span>
                             <input type="text" name="location" id="location" class="form-control" value="{{ old('location') }}" required autocomplete="off">
                             @error('location')
                                 <div class="text-danger">{{ $message }}</div>
@@ -48,7 +48,7 @@
                             <div id="suggestions" class="list-group mt-2"></div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="description">Note</label>
                             <textarea name="description" id="description" class="form-control" rows="4">{{ old('description') }}</textarea>
                             @error('description')
@@ -56,8 +56,8 @@
                             @enderror
                         </div>
 
-                        <div class="form-group my-3">
-                            <label for="img_file">Carica Immagine</label>
+                        <div class="form-group mb-3 my-3">
+                            <label for="img_file">Carica Immagine</label><span class="text-danger">*</span>
                             <input type="file" name="img_file" id="img_file" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
                             @error('img_file')
                                 <div class="text-danger">{{ $message }}</div>
