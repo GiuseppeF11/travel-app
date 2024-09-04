@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use App\Models\Travel;
 use Illuminate\Http\Request;
 use App\Http\Requests\TravelRequest;
@@ -56,32 +57,28 @@ class TravelController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(TravelRequest $request)
-    {
-        $validated = $request->validated();
+{
+    $validated = $request->validated();
 
-        // Aggiungi l'ID dell'utente loggato
-        $validated['user_id'] = Auth::id();
+    // Aggiungi l'ID dell'utente loggato
+    $validated['user_id'] = Auth::id();
 
-        // Gestisci il caricamento dell'immagine principale
-        if ($request->hasFile('img_file')) {
-            $validated['img_file'] = $request->file('img_file')->store('images', 'public');
-        }
-
-        // Crea il viaggio
-        $travel = Travel::create($validated);
-
-        // Gestisci l'upload delle foto aggiuntive
-        if ($request->hasFile('photos')) {
-            foreach ($request->file('photos') as $photo) {
-                $path = $photo->store('photos', 'public');
-                $travel->photos()->create([
-                    'file_path' => $path,
-                ]);
-            }
-        }
-
-        return redirect()->route('admin.travels.index')->with('success', 'Viaggio creato con successo.');
+    if ($request->hasFile('img_file')) {
+        $file = $request->file('img_file');
+        $path = $file->store('images', 'public');
+        $validated['img_file'] = $path;
     }
+    
+    // Crea il viaggio
+    $travel = Travel::create($validated);
+
+    // Log del percorso salvato nel database
+    Log::info('Il percorso del file immagine salvato è: ' . $travel->img_file);
+
+    return redirect()->route('admin.travels.index')->with('success', 'Viaggio creato con successo.');
+}
+
+
 
     public function addPhotos(Request $request, Travel $travel)
     {

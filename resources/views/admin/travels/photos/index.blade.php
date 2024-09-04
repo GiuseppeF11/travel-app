@@ -17,7 +17,7 @@
             <input type="file" name="file_path[]" id="fileInput" class="d-none" accept="image/*" multiple>
             
             <!-- Pulsante per attivare l'input file -->
-            <button type="button" class="btn btn-dark mb-3" id="uploadButton">
+            <button type="button" class="btn btn-1 mb-3" id="uploadButton">
                 <i class="fa-solid fa-plus text-light"></i> Aggiungi Foto
             </button>
         </form>
@@ -65,8 +65,8 @@
             @endif
 
             <div class="back-button">
-                <a href="{{ route('admin.travels.show', $travel->id) }}" class="btn btn-secondary mt-3">
-                    <i class="fa-solid fa-arrow-left"></i> Torna ai Viaggi
+                <a href="{{ route('admin.travels.show', $travel->id) }}" class="btn btn-secondary mt-3 ">
+                    <i class="fa-solid fa-arrow-left text-light"></i> Torna ai Viaggi
                 </a>
             </div>
         </form>        

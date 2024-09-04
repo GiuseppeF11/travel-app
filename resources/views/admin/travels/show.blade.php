@@ -48,25 +48,7 @@
 
                             <a href="{{ route('admin.travels.photos.index', ['travel' => $travel->id]) }}" class="btn btn-success"><i class="fa-regular fa-images text-light"></i> Album</a>
 
-                        </div>
-                        
-                        <script>
-                            // Quando si clicca sul bottone "Aggiungi Foto"
-                            document.getElementById('uploadButton').addEventListener('click', function() {
-                                // Attiva il click sull'input file nascosto
-                                document.getElementById('photos').click();
-                            });
-                        
-                            // Quando l'utente seleziona i file
-                            document.getElementById('photos').addEventListener('change', function() {
-                                // Controlla se ci sono file selezionati
-                                if (this.files.length > 0) {
-                                    // Invia il form automaticamente
-                                    document.getElementById('photoUploadForm').submit();
-                                }
-                            });
-                        </script>
-                        
+                        </div>                     
                         
                         
                         
@@ -96,7 +78,9 @@
                                     <div class="swiper-button-prev text-secondary p-5"></div>
                                 </div>
                             @else
-                                <p>Nessuna foto nell'album.</p>
+                                <div class="m-auto w-75 h-100 rounded-2 no-image" id="noImageArea">
+                                    <i class="fa-solid fa-plus add-photo"></i>
+                                </div>
                             @endif
                         </section>
                         
@@ -115,7 +99,29 @@
                                 },
                             });
                         </script>                        
-                    </section>       
+                    </section>
+                    
+                    <script>
+                        // Quando si clicca sul bottone "Aggiungi Foto"
+                        document.getElementById('uploadButton').addEventListener('click', function() {
+                            // Attiva il click sull'input file nascosto
+                            document.getElementById('photos').click();
+                        });
+                    
+                        // Quando l'utente seleziona i file
+                        document.getElementById('photos').addEventListener('change', function() {
+                            // Controlla se ci sono file selezionati
+                            if (this.files.length > 0) {
+                                // Invia il form automaticamente
+                                document.getElementById('photoUploadForm').submit();
+                            }
+                        });
+
+                        document.getElementById('noImageArea').addEventListener('click', function() {
+                            // Attiva il click sull'input file nascosto
+                            document.getElementById('photos').click();
+                        });
+                    </script>
                                        
 
                     {{-- SEZIONE TAPPE DEL VIAGGIO --}}
@@ -221,6 +227,46 @@
         position: relative;
         z-index: 2;
     }
+
+    .no-image {
+    position: relative;
+    overflow: hidden; 
+    cursor: pointer;
+    transition: linear 0.1s;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url({{ asset('images/no-image.png') }}) center no-repeat;
+        background-size: cover;
+        transition: filter linear 0.1s;
+        filter: brightness(1);
+    }
+
+    &:hover::before {
+        filter: brightness(0.3);
+    }
+
+    .add-photo {
+        display: none;
+        position: absolute;
+        font-size: 50px;
+        z-index: 1;
+        color: #CED4DA;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover .add-photo {
+        display: block;
+    }
+}
+
 
     .travel_details{
         font-size: 20px;

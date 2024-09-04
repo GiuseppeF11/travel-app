@@ -10,7 +10,7 @@
                     <h3>Crea Nuovo Viaggio</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.travels.store') }}" method="POST">
+                    <form action="{{ route('admin.travels.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group mb-3">
