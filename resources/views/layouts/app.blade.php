@@ -20,20 +20,33 @@
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
+
+    <?php
+        $page_links = [
+            [
+                'name' => 'Viaggi',
+                'url' => route('admin.travels.index')
+            ],
+            [
+                'name' => 'Aggiungi Viaggi',
+                'url' => route('admin.travels.create')
+            ],
+        ];
+    ?>
     <body>
         <header>
             <nav class="p-0 navbar h-100 navbar-expand-lg bg-body-tertiary fs-5">
                 <div class="container">
-                    <div class="logo">
+                    <a class="logo" href="{{ route('admin.travels.index') }}">
                         <img src="/images/Logo_Meridiano.png" alt="logo.meridiano">
-                    </div>
+                    </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.travels.index') }}"><i class="fa-solid fa-plane-departure "></i><span> Viaggi</span></a>
+                                <a class="nav-link link-header" href="{{ route('admin.travels.index') }}"><i class="fa-solid fa-plane-departure "></i><span> Viaggi</span></a>
                             </li>
                             {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.travels.index') }}"><i class="fa-solid fa-gear "></i> <span>Impostazioni</span></a>
@@ -51,22 +64,49 @@
             </nav>
         </header>
 
-        <main class="py-4 bg-image">
+        <main class="py-5 bg-image">
             <div class="container">
                 @yield('main-content')
             </div>
         </main>
+
+        <footer>
+
+            <div class="container w-25">
+                <div class="row pt-4 pb-1 text-center d-sm-none d-md-flex">
+                    <div class="col">
+                        <ul>
+                            @foreach (array_slice($page_links, 0, 1) as $link) 
+                                <li class="mb-2">
+                                    <a class="link-footer" href="{{ $link['url'] }}">{{ $link['name'] }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <ul>
+                            @foreach (array_slice($page_links, 1) as $link)
+                                <li class="mb-2">
+                                    <a class="link-footer" href="{{ $link['url'] }}">{{ $link['name'] }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row fw-light" style="color:#FFBB00; height: 100px;" >
+                    <div class="col text-center h-100 d-flex align-items-center justify-content-center">
+                        <div>&copy; 2015 ItsCopyright</div>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
     </body>
 </html>
 
 
 <style lang="scss" scoped>
-    header {
-        height: 10vh;
-        position: sticky;
-        top: 0;
-        z-index: 10001;
-
         .logo {
             width: 60px;
             height:100%;
@@ -76,12 +116,30 @@
                 border-radius: 100%;
             }
         }
+
+        .link {
+        text-decoration: none;
+        font-size: 15px;
+        padding: 5px 10px;
+        color: white;
+        position: relative;
     }
-    main {
-        background-image: url(/images/wallpaper.jpg);
-        padding: 30px 0;
-        min-height: 90vh;
-        background-size: contain;
+
+    .link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: rgb(255, 255, 255);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .link:hover::before {
+        transform: scaleX(1);
     }
 
 </style>

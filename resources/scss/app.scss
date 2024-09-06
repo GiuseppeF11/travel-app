@@ -7,6 +7,31 @@ body {
     font-family: "Roboto Condensed", sans-serif;
 }
 
+header {
+    height: 15vh;
+    position: sticky;
+    top: 0;
+    z-index: 10001;
+    box-shadow: 0px 0px 10px black;
+}
+
+main {
+    background-image: url(/images/wallpaper.jpg);
+    padding: 30px 0;
+    min-height: 100vh;
+    background-size: contain;
+}
+
+
+footer {
+    background-color:#383E5E;
+    min-height: 20vh;
+    background-image: url(/images/Logo_Meridiano_Earth.png);
+    background-size: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 //PALETTE
 .color-1 {
     color: #383E5E;
@@ -42,4 +67,81 @@ body {
 
 i {
     color: #383E5E;
+}
+
+li{
+    list-style-type: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.link-footer {
+    text-decoration: none;
+    font-size: 15px;
+    padding: 5px 10px;
+    color: white;
+    position: relative;
+}
+
+.link-footer::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.link-footer:hover::before {
+    transform: scaleX(1);
+}
+
+
+.link-header {
+    text-decoration: none;
+    font-size: 20px;
+    padding: 5px 10px;
+    color: rgb(71, 71, 71);
+    position: relative;
+}
+
+.link-header::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgb(71, 71, 71);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.link-header:hover::before {
+    transform: scaleX(1);
+}
+
+.logo {
+    transition: 0.3s ease-in-out;
+    border-radius: 50%;
+    margin-right: 25px;
+
+    img {
+        border-radius: 50%;
+    }
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 5px 5px black;
 }

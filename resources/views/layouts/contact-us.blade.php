@@ -9,7 +9,7 @@
         <div class="col-md-6 mb-4">
             <h2>Contattaci</h2>
             <p class="fs-5">Hai domande, suggerimenti o hai bisogno di assistenza? Siamo qui per aiutarti!</p>
-            <ul class="list-unstyled bg-secondary-subtle p-3 rounded-2">
+            <ul class="list-unstyled bg-secondary-subtle p-3 rounded-2 shadow">
                 <li class="mb-2"><strong class="badge bg-secondary w-25 fs-6">Indirizzo</strong> <span class="fs-6">Via Roma 123, 00100 Roma, Italia</span></li>
                 <li class="mb-2"><strong class="badge bg-secondary w-25 fs-6">Email</strong> <span class="fs-6">info@meridiano.com</span></li>
                 <li class="mb-2"><strong class="badge bg-secondary w-25 fs-6">Telefono</strong> <span class="fs-6">+39 06 1234567</span></li>
@@ -41,10 +41,16 @@
                     <label for="message" class="form-label">Messaggio</label>
                     <textarea class="form-control" id="message" name="message" rows="2" required></textarea>
                 </div>
-                <button type="button" class="btn btn-primary" onclick="showSuccessMessage()">Invia Messaggio</button>
+                <button type="button" class="btn btn-1" onclick="showSuccessMessage()">Invia Messaggio</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function showSuccessMessage() {
+            document.getElementById('success-message').classList.remove('d-none');
+        }
+    </script>
 
 @endsection
 
@@ -74,10 +80,5 @@
     button:hover {
         background-color: #2e3452;
     }
-</style>
 
-<script>
-    function showSuccessMessage() {
-        document.getElementById('success-message').classList.remove('d-none');
-    }
-</script>
+</style>

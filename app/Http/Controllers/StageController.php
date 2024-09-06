@@ -12,7 +12,6 @@ class StageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // Se necessario, decommenta e assicurati che funzioni correttamente.
     /*
     public function index(Request $request)
     {
@@ -29,13 +28,12 @@ class StageController extends Controller
      */
     public function create(Request $request)
     {
-        // Recupera l'ID del viaggio dalla query string
+
         $travelId = $request->query('travel_id');
         
-        // Trova il viaggio con l'ID fornito
         $travel = Travel::findOrFail($travelId);
 
-        // Passa i dati alla vista
+    
         return view('admin.stages.create', [
             'travel' => $travel
         ]);
@@ -46,13 +44,13 @@ class StageController extends Controller
      */
     public function store(StageRequest $request)
     {
-        // I dati sono già validati
+
         $validated = $request->validated();
 
-        // Crea la nuova tappa
+       
         $stage = Stage::create($validated);
 
-        // Reindirizza alla pagina di dettaglio del viaggio
+    
         return redirect()->route('admin.travels.show', $validated['travel_id'])
                          ->with('success', 'Tappa aggiunta con successo.');
     }
@@ -62,7 +60,7 @@ class StageController extends Controller
      */
     public function show(Stage $stage)
     {
-        // Mostra i dettagli di una singola tappa
+      
         return view('admin.stages.show', compact('stage'));
     }
 
@@ -71,7 +69,7 @@ class StageController extends Controller
      */
     public function edit(Stage $stage)
     {
-        // Mostra il form per modificare una tappa esistente
+     
         return view('admin.stages.edit', compact('stage'));
     }
 
@@ -80,16 +78,16 @@ class StageController extends Controller
      */
     public function update(StageRequest $request, Stage $stage)
     {
-        // I dati sono già validati
+
         $validated = $request->validated();
     
-        // Aggiorna la tappa esistente
+
         $stage->update($validated);
     
-        // Recupera l'ID del viaggio associato alla tappa
+
         $travelId = $stage->travel_id;
     
-        // Reindirizza alla pagina di dettaglio del viaggio
+
         return redirect()->route('admin.travels.show', $travelId)
                          ->with('success', 'Tappa aggiornata con successo.');
     }
@@ -102,10 +100,9 @@ class StageController extends Controller
     {
         $travelId = $stage->travel_id;
 
-        // Elimina la tappa
+
         $stage->delete();
 
-        // Reindirizza alla pagina di dettaglio del viaggio
         return redirect()->route('admin.travels.show', $travelId)
                         ->with('success', 'Tappa eliminata con successo.');
     }

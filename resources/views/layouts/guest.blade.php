@@ -16,6 +16,28 @@
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
+
+    <?php
+        $page_links = [
+            [
+                'name' => 'Chi Siamo?',
+                'url' => route('page-details')
+            ],
+            [
+                'name' => 'Contatti',
+                'url' => route('contact-us')
+            ],
+            [
+                'name' => 'Accedi',
+                'url' => route('login')
+            ],
+            [
+                'name' => 'Registrati',
+                'url' => route('register')
+            ]
+        ];
+    ?>
+
     <body>
         <header>
             <nav class="navbar navbar-expand-lg bg-body-tertiary h-100 fs-5">
@@ -31,18 +53,12 @@
                             @auth
                                 
                             @else
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('page-details') }}">Chi siamo?</a>
+                                <li class="nav-item link fs-5">
+                                    <a class="nav-link link-header" href="{{ route('page-details') }}">Chi siamo?</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('contact-us') }}">Contatti</a>
+                                <li class="nav-item link fs-5">
+                                    <a class="nav-link link-header" href="{{ route('contact-us') }}">Contatti</a>
                                 </li>
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Accedi</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Registrati</a>
-                                </li> --}}
                             @endauth
                         </ul>
 
@@ -65,7 +81,43 @@
                 @yield('main-content')
             </div>
         </main>
-        <!-- Aggiungi il JS di AOS prima della chiusura del body -->
+
+
+        <footer>
+
+            <div class="container w-25">
+                <div class="row pt-4 pb-1 text-center d-sm-none d-md-flex ">
+                    <div class="col">
+                        <ul>
+                            @foreach (array_slice($page_links, 0, 2) as $link)
+                                <li class="mb-2">
+                                    <a class="link-footer" href="{{ $link['url'] }}">{{ $link['name'] }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <ul>
+                            @foreach (array_slice($page_links, 2) as $link)
+                                <li class="mb-2">
+                                    <a class="link-footer" href="{{ $link['url'] }}">{{ $link['name'] }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row fw-light" style="color:#FFBB00; height: 100px;" >
+                    <div class="col text-center h-100 d-flex align-items-center justify-content-center">
+                        <div>&copy; 2015 ItsCopyright</div>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+
+
+
         <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
         <script>
             AOS.init();
@@ -77,12 +129,7 @@
 
 <style lang="scss" scoped>
 
-    header {
-        height: 10vh;
-        position: sticky;
-        top: 0;
-        z-index: 10001;
-    }
+    
 
     .logo {
         width: 70px;
@@ -91,12 +138,5 @@
         }
     }
 
-
-    main {
-        background-image: url(/images/wallpaper.jpg);
-        padding: 30px 0;
-        min-height: 90vh;
-        background-size: contain;
-    }
-
+    
 </style>

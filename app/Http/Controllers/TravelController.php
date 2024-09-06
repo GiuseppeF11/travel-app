@@ -60,7 +60,6 @@ class TravelController extends Controller
 {
     $validated = $request->validated();
 
-    // Aggiungi l'ID dell'utente loggato
     $validated['user_id'] = Auth::id();
 
     if ($request->hasFile('img_file')) {
@@ -68,11 +67,9 @@ class TravelController extends Controller
         $path = $file->store('images', 'public');
         $validated['img_file'] = $path;
     }
-    
-    // Crea il viaggio
+
     $travel = Travel::create($validated);
 
-    // Log del percorso salvato nel database
     Log::info('Il percorso del file immagine salvato è: ' . $travel->img_file);
 
     return redirect()->route('admin.travels.index')->with('success', 'Viaggio creato con successo.');
@@ -86,7 +83,6 @@ class TravelController extends Controller
             'photos.*' => 'nullable|image|max:2048', // Validazione per le foto
         ]);
 
-        // Gestisci l'upload delle foto
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $photo) {
                 $path = $photo->store('photos', 'public');
@@ -104,7 +100,6 @@ class TravelController extends Controller
      */
     public function show(Travel $travel)
     {
-        // Recupera le tappe associate al viaggio
         $stages = $travel->stages()->orderBy('stage_start_date', 'asc')->get();
         
         return view('admin.travels.show', compact('travel', 'stages'));
@@ -115,7 +110,6 @@ class TravelController extends Controller
      */
     public function edit(Travel $travel)
     {
-        // Verifica che il viaggio appartenga all'utente loggato
         if ($travel->user_id !== Auth::id()) {
             abort(403, 'Accesso non autorizzato');
         }
@@ -135,7 +129,6 @@ class TravelController extends Controller
             $path = $file->store('images', 'public');
             $validated['img_file'] = $path;
 
-            // Rimuovi il vecchio file se necessario
             if ($travel->img_file && Storage::exists($travel->img_file)) {
                 Storage::delete($travel->img_file);
             }
@@ -151,17 +144,14 @@ class TravelController extends Controller
      */
     public function destroy(Travel $travel)
     {
-        // Verifica che il viaggio appartenga all'utente loggato
         if ($travel->user_id !== Auth::id()) {
             abort(403, 'Accesso non autorizzato');
         }
 
-        // Rimuovi l'immagine principale se presente
         if ($travel->img_file && Storage::exists($travel->img_file)) {
             Storage::delete($travel->img_file);
         }
 
-        // Rimuovi le foto associate al viaggio
         foreach ($travel->photos as $photo) {
             if (Storage::exists($photo->file_path)) {
                 Storage::delete($photo->file_path);

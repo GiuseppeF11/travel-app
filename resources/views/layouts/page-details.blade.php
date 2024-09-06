@@ -6,11 +6,11 @@
         $images = [
             [
                 'url' => 'https://static2-viaggi.corriereobjects.it/wp-content/uploads/2017/01/iStock-vacanze-famiglie.jpg?v=1485338479',
-                'description' => "Con la nostra app, ogni viaggio diventa un ricordo eterno. Conserva ogni tappa, ogni emozione, e rievoca quei momenti speciali ogni volta che vuoi."
+                'description' => "Con MERIDIANO, ogni viaggio diventa un ricordo eterno. Conserva ogni tappa, ogni emozione, e rievoca quei momenti speciali ogni volta che vuoi."
             ],
             [
                 'url' => 'https://media.istockphoto.com/id/1500563478/photo/traveler-asian-woman-relax-and-travel-on-thai-longtail-boat-in-ratchaprapha-dam-at-khao-sok.webp?b=1&s=612x612&w=0&k=20&c=lctMEC3mxw_T1N1rk1eAx5c9NRddxUj8ncaMxtBpIDU=',
-                'description' => "Pianifica il tuo itinerario perfetto e segna ogni tappa del tuo viaggio. La nostra app ti permette di creare mappe dettagliate dei tuoi percorsi, rendendo ogni avventura facile da rivivere."
+                'description' => "Pianifica il tuo itinerario perfetto e segna ogni tappa del tuo viaggio. MERIDIANO ti permette di creare mappe dettagliate dei tuoi percorsi, rendendo ogni avventura facile da rivivere."
             ],
             [
                 'url' => 'https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230252013/198748406-raccolta-di-foto-sul-tema-dei-viaggi-e-delle-vacanze-in-tailandia.jpg',
