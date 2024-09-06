@@ -59,7 +59,7 @@
 
                             <!-- Righe della tabella -->
                             @foreach($travels as $travel)
-                                <div class="custom-table-row" style="
+                                <div class="custom-table-row" onclick="window.location.href='{{ route('admin.travels.show', $travel) }}'" style="
                                     background-image: url(
                                         @if (Str::startsWith($travel->img_file, 'https://'))
                                             '{{ $travel->img_file }}'
@@ -71,15 +71,15 @@
                                     background-position: center;
                                     background-repeat: no-repeat;
                                     color: #fff;
-                                ">
+                                    ">
                                     <div class="custom-table-cell">{{ $travel->title }}</div>
                                     <div class="custom-table-cell d-sm-none d-md-table-cell">{{ $travel->start_date->format('d/m/Y') }}</div>
                                     <div class="custom-table-cell d-sm-none d-md-table-cell">{{ $travel->end_date->format('d/m/Y') }}</div>
                                     <div class="custom-table-cell">{{ Str::limit($travel->location, 50, '...') }}</div>
                                     <div class="custom-table-cell">
-                                        <a href="{{ route('admin.travels.show', $travel) }}" class="btn btn-info btn-sm">
+                                        {{-- <a href="{{ route('admin.travels.show', $travel) }}" class="btn btn-info btn-sm">
                                             <i class="fa-solid fa-eye fs-5 p-1"></i> Mostra
-                                        </a>
+                                        </a> --}}
                                         <a href="{{ route('admin.travels.edit', $travel) }}" class="btn btn-warning btn-sm">
                                             <i class="fa-solid fa-file-pen fs-5 p-1"></i> Modifica
                                         </a>
@@ -154,9 +154,16 @@
     }
 
     .custom-table-row {
-        display: table-row;
-        transition: background 0.3s ease;
+    display: table-row;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: 0px 10px 10px black;
     }
+}
+
 
     .custom-table-cell {
         display: table-cell;

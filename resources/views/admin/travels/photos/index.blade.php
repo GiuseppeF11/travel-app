@@ -219,8 +219,8 @@
 }
 
 .full-screen-image {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 70%;
+    max-height: 60%;
     object-fit: contain; 
     transition: opacity 0.3s ease;
 }
@@ -233,9 +233,9 @@
     color: #fff;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
+    width: 80px;
+    height: 80px;
+    font-size: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -245,11 +245,11 @@
 }
 
 .prev-btn {
-    left: 10px;
+    left: 100px;
 }
 
 .next-btn {
-    right: 10px;
+    right: 100px;
 }
 
 .nav-btn:hover {
@@ -258,14 +258,14 @@
 
 .close-btn {
     position: absolute;
-    top: 80px;
-    right: 50px;
+    top: 130px;
+    right: 300px;
     background: rgba(0, 0, 0, 0.5); 
     color: #fff;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     font-size: 24px;
     display: flex;
     align-items: center;

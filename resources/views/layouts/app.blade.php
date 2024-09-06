@@ -52,13 +52,13 @@
                                 <a class="nav-link" href="{{ route('admin.travels.index') }}"><i class="fa-solid fa-gear "></i> <span>Impostazioni</span></a>
                             </li> --}}
                         </ul>
-                        <form class="m-0" method="POST" action="{{ route('logout') }}">
+                        <form id="logoutForm" method="POST" action="{{ route('logout') }}" class="m-0">
                             @csrf
-
-                            <button type="submit" class="btn btn-outline-danger">
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();" class="link-header text-danger">
                                 Esci
-                            </button>
+                            </a>
                         </form>
+                        
                     </div>
                 </div>
             </nav>
