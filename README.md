@@ -20,5 +20,19 @@ Dall'esigienza di conservare l'esperienze estive e riviverle in tutta comodità 
     </ul>
 </p>
 
+<h2>Tecnologie Utilizzate</h2>
+<ul>
+    <li>Laravel</li>
+    <li>MAMP</li>
+    <li>MySQL</li>
+    <li>HTML</li>
+    <li>JavaScript</li>
+    <li>CSS</li>
+    <li>FontAwesome</li>
+    <li>Bootstrap</li>
+    <li>Swiper</li>
+    <li>AOS.js</li>
+</ul>
+
 
 

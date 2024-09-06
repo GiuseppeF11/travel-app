@@ -120,10 +120,10 @@
     font-size: 70px;
     letter-spacing: 20px;
     text-shadow: 0px 3px 3px rgb(0, 0, 0);
-    background-image: url(/images/Logo_Meridiano_Earth.png);
+    /* background-image: url(/images/Logo_Meridiano_Earth.png);
     background-size: 250px;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 }
 
 .subtitle {
