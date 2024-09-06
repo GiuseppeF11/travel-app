@@ -10,13 +10,36 @@
                     <div class="card-header">
                         <h3>Modifica Tappa: {{ $stage->title }}</h3>
                     </div>
+
+                    {{-- @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif --}}
+
                     <div class="card-body">
                         <form action="{{ route('admin.stages.update', $stage->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                        
+
+                            @if(isset($travel) && $travel->id)
+                                <input type="hidden" name="travel_id" value="{{ $travel->id }}">
+                            @else
+                                <div class="alert alert-danger">Nessun viaggio selezionato.</div>
+                            @endif
+
                             <div class="form-group mb-3">
-                                <label for="title">Titolo</label><span class="text-danger">*</span>
+                                <label class="fw-bold" for="travel_id">Viaggio</label>
+                                <!-- Mostra solo il titolo del viaggio senza possibilità di modifica -->
+                                <input type="text" id="travel_id" class="form-control" value="{{ $travel->title }}" readonly>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="title">Nome Tappa</label><span class="text-danger">*</span>
                                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $stage->title) }}" required>
                             </div>
                         
@@ -41,7 +64,7 @@
                             </div>
                         
                             <div class="form-group mb-3">
-                                <label for="description">Descrizione</label>
+                                <label for="description">Note</label>
                                 <textarea name="description" id="description" class="form-control" rows="4">{{ old('description', $stage->description) }}</textarea>
                             </div>
                         

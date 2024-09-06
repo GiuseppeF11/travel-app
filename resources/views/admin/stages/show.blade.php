@@ -20,7 +20,7 @@
                 <div class="card-footer">
                     <a href="{{ route('admin.stages.edit', $stage->id) }}" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i> Modifica</a>
                     <!-- Nuovo pulsante per tornare al viaggio associato -->
-                    <a href="{{ route('admin.travels.show', $stage->travel_id) }}" class="btn btn-dark"><i class="fa-solid fa-arrow-left text-light"></i> Torna al viaggio</a>
+                    <a href="{{ route('admin.travels.show', $stage->travel_id) }}" class="btn btn-1"><i class="fa-solid fa-arrow-left text-light"></i> Torna al viaggio</a>
                 </div>
             </div>
         </div>

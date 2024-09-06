@@ -15,6 +15,7 @@ class StageRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'travel_id' => 'required|exists:travel,id',
             'title' => 'required|string|max:255',
             'stage_start_date' => 'required|date',
             'stage_end_date' => 'required|date',

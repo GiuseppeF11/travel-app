@@ -80,7 +80,7 @@ class TravelController extends Controller
     public function addPhotos(Request $request, Travel $travel)
     {
         $request->validate([
-            'photos.*' => 'nullable|image|max:2048', // Validazione per le foto
+            'photos.*' => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('photos')) {

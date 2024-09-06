@@ -133,38 +133,40 @@
                             @else
 
                             <div class="container p-0">
-                                <div class="">
-                                    @foreach($stages as $stage)
-    <li class="list-group-item rounded-0 p-3 border mb-3 rounded-2">
-        <h5 class=" text-decoration-underline">{{ $stage->title }}</h5>
-        <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-calendar-days text-light"></i> Periodo</strong> {{ $stage->stage_start_date->format('d/m/Y') }} - {{ $stage->stage_end_date->format('d/m/Y') }}</p>
-        <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-clock text-light"></i> Orario</strong> {{ $stage->start_time ? $stage->start_time->format('H:i') : 'N/A' }} - {{ $stage->end_time ? $stage->end_time->format('H:i') : 'N/A' }}</p>                                        
-        <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-note-sticky text-light"></i> Note</strong>  {{ $stage->description ?? 'N/A' }}</p>
-        <a href="{{ route('admin.stages.show', $stage->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-circle-info"></i> Dettagli</a>
-        <a href="{{ route('admin.stages.edit', $stage->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-file-pen"></i> Modifica</a>
+                                
+                                @foreach($stages as $stage)
+                                    <li class="list-group-item rounded-0 p-3 border mb-3 rounded-2">
+                                        <h5 class=" text-decoration-underline">{{ $stage->title }}</h5>
+                                        <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-calendar-days text-light"></i> Periodo</strong> {{ $stage->stage_start_date->format('d/m/Y') }} - {{ $stage->stage_end_date->format('d/m/Y') }}</p>
+                                        <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-clock text-light"></i> Orario</strong> {{ $stage->start_time ? $stage->start_time->format('H:i') : 'N/A' }} - {{ $stage->end_time ? $stage->end_time->format('H:i') : 'N/A' }}</p>                                        
+                                        <p><strong class="badge bg-gradient bg-secondary fs-6"><i class="fa-solid fa-note-sticky text-light"></i> Note</strong>  {{ $stage->description ?? 'N/A' }}</p>
+                                        <a href="{{ route('admin.stages.show', $stage->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-circle-info"></i> Dettagli</a>
+                                        <a href="{{ route('admin.stages.edit', $stage->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-file-pen"></i> Modifica</a>
 
-        <!-- Modulo per la cancellazione -->
-        <form id="delete-form-{{ $stage->id }}" action="{{ route('admin.stages.destroy', $stage->id) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="button" class="btn btn-danger btn-sm text-dark" onclick="showConfirmationModal({{ $stage->id }})">
-                <i class="fa-solid fa-trash-can"></i> Elimina
-            </button>
-        </form>
+                                        <!-- Modulo per la cancellazione -->
+                                        <form id="delete-form-{{ $stage->id }}" action="{{ route('admin.stages.destroy', $stage->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btn-sm text-dark" onclick="showConfirmationModal({{ $stage->id }})">
+                                                <i class="fa-solid fa-trash-can"></i> Elimina
+                                            </button>
+                                        </form>
 
-        <!-- Modal di conferma -->
-        <div id="confirmationModal-{{ $stage->id }}" class="modal-overlay">
-            <div class=" text-center bg-light text-dark rounded-2 p-5">
-                <h5>Conferma eliminazione</h5>
-                <p>Sei sicuro di voler eliminare questa tappa?</p>
-                <div class="d-flex gap-3 justify-content-center">
-                    <button type="button" class="btn btn-secondary" onclick="closeConfirmationModal({{ $stage->id }})">Annulla</button>
-                    <button type="button" class="btn btn-danger" onclick="submitDeleteForm({{ $stage->id }})">Elimina</button>
-                </div>
-            </div>
-        </div>
-    </li>
-@endforeach
+                                        <!-- Modal di conferma -->
+                                        <div id="confirmationModal-{{ $stage->id }}" class="modal-overlay">
+                                            <div class=" text-center bg-light text-dark rounded-2 p-5">
+                                                <h5>Conferma eliminazione</h5>
+                                                <p>Sei sicuro di voler eliminare questa tappa?</p>
+                                                <div class="d-flex gap-3 justify-content-center">
+                                                    <button type="button" class="btn btn-secondary" onclick="closeConfirmationModal({{ $stage->id }})">Annulla</button>
+                                                    <button type="button" class="btn btn-danger" onclick="submitDeleteForm({{ $stage->id }})">Elimina</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </div>
+
 
 <script>
     function showConfirmationModal(stageId) {

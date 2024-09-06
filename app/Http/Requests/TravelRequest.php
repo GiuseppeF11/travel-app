@@ -19,7 +19,7 @@ class TravelRequest extends FormRequest
             'end_date' => 'required|date|after_or_equal:start_date',
             'location' => 'required|string|max:250',
             'description' => 'nullable|string',
-            'img_file' => 'required|max:2048',
+            'img_file' => 'required|image',
         ];
     }
 

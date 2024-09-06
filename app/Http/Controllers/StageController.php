@@ -44,16 +44,20 @@ class StageController extends Controller
      */
     public function store(StageRequest $request)
     {
-
+        // Valida i dati
         $validated = $request->validated();
 
-       
+        // Aggiungi esplicitamente il travel_id ai dati
+        $validated['travel_id'] = $request->input('travel_id');
+
+        // Crea la nuova tappa
         $stage = Stage::create($validated);
 
-    
+        // Redireziona con successo
         return redirect()->route('admin.travels.show', $validated['travel_id'])
-                         ->with('success', 'Tappa aggiunta con successo.');
+                        ->with('success', 'Tappa aggiunta con successo.');
     }
+
 
     /**
      * Display the specified resource.
@@ -69,8 +73,9 @@ class StageController extends Controller
      */
     public function edit(Stage $stage)
     {
-     
-        return view('admin.stages.edit', compact('stage'));
+        $travel = Travel::find($stage->travel_id);
+
+        return view('admin.stages.edit', compact('stage', 'travel'));
     }
 
     /**
@@ -78,19 +83,18 @@ class StageController extends Controller
      */
     public function update(StageRequest $request, Stage $stage)
     {
-
+        // Mostra i dati che sono stati validati
         $validated = $request->validated();
-    
 
+        // Aggiorna lo stage con i dati validati
         $stage->update($validated);
-    
 
-        $travelId = $stage->travel_id;
-    
-
-        return redirect()->route('admin.travels.show', $travelId)
-                         ->with('success', 'Tappa aggiornata con successo.');
+        // Reindirizza alla pagina del viaggio associato
+        return redirect()->route('admin.travels.show', $stage->travel_id)
+                        ->with('success', 'Tappa aggiornata con successo.');
     }
+
+
     
 
     /**
