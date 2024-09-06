@@ -42,9 +42,9 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4">
                     @foreach($photos as $photo)
-                        <div class="col-md-3 mb-4">
+                        <div class="col mb-4">
                             <div class="card photo-card">
                                 @if (Str::startsWith($photo->file_path, 'https://'))
                                     <img src="{{ $photo->file_path }}" class="card-img-top photo-img" alt="Foto">
